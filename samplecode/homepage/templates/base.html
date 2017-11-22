@@ -1,0 +1,215 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js"> <!--<![endif]-->
+  <main>
+  <head>
+     <meta charset="UTF-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+     {% load humanize %}
+
+     {% load staticfiles %}
+     <title>{% block meta_title %}Purchasing{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+     <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+     <!-- Load Jquery -->
+     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+     <!--Import Google Icon Font-->
+     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+     <!-- CUSTOM CSS FILES -->
+     <link rel="stylesheet" href="{% static 'material/css/forms.css' %}"/>
+     <!--<link rel="stylesheet" href="{% static 'material/css/jquery.datetimepicker.css' %}"/>-->
+     <link rel="stylesheet" href="{% static 'material/css/materialize.css' %}"/>
+     <link rel="stylesheet" href="{% static 'css/byustyle.css' %}"/>
+     <link rel="stylesheet" href="{% static 'css/prForm.css' %}"/>
+     <link rel="stylesheet" href="{% static 'css/purchasing.css' %}"/>
+     <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+     <link rel="stylesheet" href="{% static 'css/header.css' %}"/>
+
+     <!-- local_materialize is a POC for customizing classes/elements -->
+     <link rel="stylesheet" href="{% static 'css/local_materialize.css' %}"/>
+
+     <!-- CUSTOM JS FILES -->
+     <script src="{% static 'js/base.js' %}"></script>
+     <script src="{% static 'js/custom_materialize.js' %}"></script>
+     <script src="{% static 'js/login.js' %}"></script>
+     <!-- Stupid-Table-Sort Plugin -->
+     <!-- <script src="{% static 'js/stupid-table-plugin.js' %}"></script> -->
+     <script src="{% static 'js/globalSearch.js' %}"></script>
+
+
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+     <!-- Load Materialize -->
+     {% include 'material/includes/material_css.html' %}
+     {% include 'material/includes/material_js.html' %}
+
+     <!-- OUR JS -->
+     <script src="{% static 'js/base.js' %}"></script>
+     {% block extra_js %}
+
+     {% endblock %}
+
+  </head>
+
+
+  <body {% block body_id %}id="body"{% endblock %} class="main_body">
+    {% block header %}
+      <header class="col s12">
+        <ul id="slide-out" class="side-nav fixed main_nav">
+          <li class="byu_logo_nav_li"><a class="left byu_logo_nav" href="https://www.byu.edu/"><img src="{% static 'img/byu-logo-small.gif' %}"></a>
+            <a href="http://www.chem.byu.edu/"><h5 class="white-text byu_chem_nav">Chemistry & Biochemistry</h5></a> <!--Chem -->
+            <a href="{% url 'index'%}"><h6 class="center white-text purchasing_logo_nav"><i class="material-icons" style="margin-right: 10px;">home</i>Online Purchasing System</h6></a> <!-- Purchasing home -->
+          </li>
+          {% if user.is_superuser %}
+          <li>
+            <a href="{% url 'transfer'%}">TRANSFER</a>
+          </li>
+          {% endif %}
+          <li><div class="divider"></div></li>
+          <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+              <li class="hover">
+                <a class="white-text button" href="{% url 'newPurchase'%}">New Purchase</a>
+              </li>
+            </ul>
+          </li>
+          <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+              <li class="hover">
+                <a id="statuslink" class="white-text button" href="{% url 'listPurchases'%}">Status</a>
+              </li>
+            </ul>
+          </li>
+          {% if user.is_staff %}
+          <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+              <li class="hover">
+                <a class="white-text no-padding collapsible-header">Manage<i class="white-text material-icons right">keyboard_arrow_down</i></a>
+                <div class="collapsible-body nav_body">
+                  <ul>
+                    <li id="chemTab"><a class="white-text nav_tabs" href="{% url 'chem-preset' %}">Account Presets</a></li>
+                    <li id="nonChemTab"><a class="white-text nav_tabs" href="{% url 'non-chem-preset' %}">Non-Chemistry Presets</a></li>
+                    <li id="speedtypeTab"><a class="white-text nav_tabs" href="{% url 'speedtype' %}">Speedtypes</a></li>
+                    <li id="subclassTab"><a class="white-text nav_tabs" href="{% url 'subclass' %}">Subclasses</a></li>
+                    <li id="accountTab"><a class="white-text nav_tabs" href="{% url 'account' %}">Accounts</a></li>
+                    <li id="departmentTab"><a class="white-text nav_tabs" href="{% url 'department' %}">Departments</a></li>
+                    <li id="companyTab"><a class="white-text nav_tabs" href="{% url 'company' %}">Companies</a></li>
+                    <li id="locationTab"><a class="white-text nav_tabs" href="{% url 'location' %}">Delivery Locations</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </li>
+          {% endif %}
+        </ul>
+        <!-- End Side-nav -->
+
+        <!-- Header for each page found with content in each app -->
+        {% block extranav %}
+        <nav class="col s12 no_shadow page_header">
+          <a href="#" data-activates="slide-out" class="button-collapse tooltipped" data-tooltip="Menu"><i class="material-icons">menu</i></a>
+          <a class="page-title">{{ title }}</a>
+          <ul class="right">
+            <li><a class="left-edge right byu_logo_nav tooltipped" data-tooltip="BYU Homepage" href="https://www.byu.edu/"><img src="{% static 'img/byu-logo-small.gif' %}"></a></li>
+            <li><a class="header-btn right tooltipped" data-tooltip="Purchasing Homepage" href="/"><i class="header-btn material-icons">home</i></a></li>
+            <li>
+              {% if user.is_authenticated %}
+              <a class="right-edge right header-btn tooltipped" data-tooltip="Log Out" href="{% url 'logout' %}"><i class="header-btn material-icons">power_settings_new</i></a>
+              {% else %}
+              <a class="right-edge right header-btn tooltipped" data-tooltip="Log In" href="{% url 'login' %}"><i class="header-btn material-icons">person_outline</i></a>
+              {% endif %}
+            </li>
+          </ul>
+        </nav>
+        {% endblock %}
+      </header>
+      <!-- End Header and Tabs -->
+      {% endblock %}
+
+      <!-- Login modal structure -->
+      {% block modal_login %}
+        <div id="login_modal" class="modal">
+          <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+          </div>
+        </div>
+      {% endblock %}
+
+      <!-- Search modal structure -->
+
+
+      <!-- Modal structure used for several modal's in code -->
+      {% block page_modal %}
+        <div id="page_modal" class="modal all_modal">
+          <a class="right modal-action modal-close cancel-div waves-effect waves-light">
+            <i class="red-text small material-icons">clear</i>
+          </a>
+          <div class="modal-content" id="page_modal_content">
+              <h4>Modal Header</h4>
+              <p>A bunch of text</p>
+          </div>
+        </div>
+      {% endblock %}
+
+      {% block stretch_modal %}
+        <div id="stretch_modal" class="modal">
+          <a class="right modal-action modal-close cancel-div waves-effect waves-light">
+            <i class="red-text small material-icons">clear</i>
+          </a>
+          <div class="modal-content" id="stretch_modal_content">
+              <h4>Modal Header</h4>
+              <p>A bunch of text</p>
+          </div>
+        </div>
+      {% endblock %}
+
+
+
+
+      <!-- Modal structure used for any modals that are called from inside another modal -->
+      {% block secondary_modal %}
+        <div id="secondary_modal" class="modal all_modal">
+          <a class="right modal-action modal-close cancel-div waves-effect waves-light">
+            <i class="red-text small material-icons">clear</i>
+          </a>
+          <div class="modal-content" id="secondary_modal_content">
+              <h4>Modal Header</h4>
+              <p>A bunch of text</p>
+          </div>
+        </div>
+      {% endblock %}
+
+      <!-- Content found in other apps -->
+      {% block content %}
+      {% endblock %}
+      </main>
+
+      {% block footer %}
+        <footer class="footer center">
+          <p>
+            <a class="footer_link" href="http://byui.edu/">BYU-Idaho  </a>
+            <a class="footer_link" href="http://byuh.edu/">BYU-Hawaii </a>
+            <a class="footer_link" href="http://www.ldsbc.edu/">LDS Business College  </a>
+            <a class="footer_link" href="http://lds.org/">The Church of Jesus Christ of Latter-day Saints</a>
+          </p>
+          <p>
+            <a class="footer_link" href="http://home.byu.edu/home/copyright">Copyright© 2017, All Rights Reserved</a>
+          </p>
+        </footer>
+      {% endblock %}
+
+  </body>
+    <!-- Footer content -->
+
+
+
+</html>

@@ -1,0 +1,76 @@
+.pr_form {
+
+  padding: 1em !important;
+
+}
+
+
+.pr_input {
+
+  outline-style: solid;
+  outline-color: black;
+  outline-width: thin;
+}
+
+.deliver_title{
+
+  padding: 1em !important;
+}
+
+.row-space td {
+  width: 1em;
+}
+
+.item-margin {
+  padding-right: 3em !important;
+  padding-left: 3em !important;
+  padding-bottom: 3em !important;
+}
+
+.bold-total-text {
+  font-weight: bold !important;
+}
+
+.form-margin {
+  padding-left: 3em !important;
+  padding-right: 3em !important;
+  padding-top: 3em !important;
+}
+
+.list-margin {
+  padding-left: 3em !important;
+  padding-right: 3em !important;
+  padding-bottom: 10em !important;
+  margin-top: 1em !important;
+}
+
+.contactBtn {
+  margin-bottom: 1em !important;
+}
+
+#saveItemChanges {
+  display: none ;
+  margin-bottom: 1em !important;
+}
+
+.collapsible-p-margin {
+  margin-left: 3em !important;
+}
+
+.fix {
+  overflow-y: visible !important;
+}
+
+.smallMargin {
+  margin: 0 !important;
+}
+
+.smallMargin tbody tr td {
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+}
+
+#id_option {
+  display: inline-block !important;
+  margin: 10px;
+}
