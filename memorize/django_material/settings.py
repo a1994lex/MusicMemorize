@@ -25,18 +25,28 @@ SECRET_KEY = '%d$xsf4&f$107#zmglglv5(fu-fm4k#vx+pdf!sneg(5m61)8d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ('*',)
+
+DATE_INPUT_FORMATS = ('%m-%d-%Y')
 
 
 # Application definition
 
 INSTALLED_APPS = (
+    'material',
+    'material.admin',
+    'material.frontend',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'jquery',
+    'simple_search',
+    'djangoformsetjs',
+    'openpyxl',
+    'django.contrib.humanize',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -50,12 +60,14 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'memorize.urls'
+ROOT_URLCONF = 'django_material.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'memorize/templates'),
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,7 +80,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'memorize.wsgi.application'
+WSGI_APPLICATION = 'django_material.wsgi.application'
 
 
 # Database
@@ -81,6 +93,14 @@ DATABASES = {
     }
 }
 
+
+AUTH_IS_STAFF = ["director"]
+
+FILE_UPLOAD_HANDLERS = [
+        "django.core.files.uploadhandler.MemoryFileUploadHandler",
+        "django.core.files.uploadhandler.TemporaryFileUploadHandler"]
+
+LOGIN_URL = "accounts/login"
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -98,5 +118,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+PROJECT_APP_PATH = os.path.dirname(os.path.abspath(__file__))
+PROJECT_APP = os.path.basename(PROJECT_APP_PATH)
+PROJECT_ROOT = BASE_DIR = os.path.dirname(PROJECT_APP_PATH)
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(PROJECT_ROOT, STATIC_URL.strip("/"))
