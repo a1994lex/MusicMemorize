@@ -5,4 +5,5 @@ $( document ).ready(function(){
     $('.button-collapse').sideNav();
     // $("table").stupidtable();
 
+    $('#why_mem')
 });

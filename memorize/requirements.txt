@@ -2,8 +2,9 @@ Django==1.11
 django-material==0.12.3
 django-formset-js
 django-simple-search
-psycopg2
-lxml
-openpyxl
 python-ldap==2.4.15
 django_cas_ng==3.4.2
+psycopg2==2.6.2
+dj-database-url==0.4.1
+whitenoise==3.2.2
+gunicorn==19.6.0
