@@ -1,7 +1,8 @@
 .page_header {
   /*background-color: #37474f !important;*/
-  background-image: url("/static/img/header-bg.png");
+  /*background-image: url("/static/img/header-bg.png");*/
   height: 64px !important;
+  background-color: black;
 
 }
 
@@ -37,4 +38,28 @@
 
 .left-edge {
   margin-left:40px !important;
+}
+
+.wide_400 {
+
+  width: 500px !important;
+}
+
+
+.my_logo {
+  margin-top: 120px;
+  text-align: center;
+  position: relative;
+}
+
+.explain_why {
+  margin:
+}
+
+.log_in{
+
+}
+
+.my_image {
+  display: block;
 }

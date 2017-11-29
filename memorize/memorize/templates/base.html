@@ -13,8 +13,8 @@
      {% load humanize %}
 
      {% load staticfiles %}
-     <title>{% block meta_title %}Purchasing{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
-     <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+     <title>{% block meta_title %}Memorize{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+     <link rel="shortcut icon" type="image/png" href="{% static 'img/musicnote.ico' %}"/>
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
      <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
      <!-- Load Jquery -->
@@ -63,76 +63,45 @@
   <body {% block body_id %}id="body"{% endblock %} class="main_body">
     {% block header %}
       <header class="col s12">
-        <ul id="slide-out" class="side-nav fixed main_nav">
-          <li class="byu_logo_nav_li"><a class="left byu_logo_nav" href="https://www.byu.edu/"><img src="{% static 'img/byu-logo-small.gif' %}"></a>
-            <a href="http://www.chem.byu.edu/"><h5 class="white-text byu_chem_nav">Chemistry & Biochemistry</h5></a> <!--Chem -->
-            <a href="{% url 'index'%}"><h6 class="center white-text purchasing_logo_nav"><i class="material-icons" style="margin-right: 10px;">home</i>Online Purchasing System</h6></a> <!-- Purchasing home -->
-          </li>
-          {% if user.is_superuser %}
-          <li>
-            <a href="{% url 'transfer'%}">TRANSFER</a>
-          </li>
-          {% endif %}
-          <li><div class="divider"></div></li>
-          <li class="no-padding">
-            <ul class="collapsible collapsible-accordion">
-              <li class="hover">
-                <a class="white-text button" href="">New Purchase</a>
-              </li>
-            </ul>
-          </li>
-          <li class="no-padding">
-            <ul class="collapsible collapsible-accordion">
-              <li class="hover">
-                <a id="statuslink" class="white-text button" href="">Status</a>
-              </li>
-            </ul>
-          </li>
-          {% if user.is_staff %}
-          <li class="no-padding">
-            <ul class="collapsible collapsible-accordion">
-              <li class="hover">
-                <a class="white-text no-padding collapsible-header">Manage<i class="white-text material-icons right">keyboard_arrow_down</i></a>
-                <div class="collapsible-body nav_body">
-                  <ul>
-                    <li id="chemTab"><a class="white-text nav_tabs" href="">Account Presets</a></li>
-                    <li id="nonChemTab"><a class="white-text nav_tabs" href="">Non-Chemistry Presets</a></li>
-                    <li id="speedtypeTab"><a class="white-text nav_tabs" href="">Speedtypes</a></li>
-                    <li id="subclassTab"><a class="white-text nav_tabs" href="">Subclasses</a></li>
-                    <li id="accountTab"><a class="white-text nav_tabs" href="">Accounts</a></li>
-                    <li id="departmentTab"><a class="white-text nav_tabs" href="">Departments</a></li>
-                    <li id="companyTab"><a class="white-text nav_tabs" href="">Companies</a></li>
-                    <li id="locationTab"><a class="white-text nav_tabs" href="">Delivery Locations</a></li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </li>
-          {% endif %}
-        </ul>
+
         <!-- End Side-nav -->
 
         <!-- Header for each page found with content in each app -->
-        {% block extranav %}
+
         <nav class="col s12 no_shadow page_header">
           <a href="#" data-activates="slide-out" class="button-collapse tooltipped" data-tooltip="Menu"><i class="material-icons">menu</i></a>
           <a class="page-title">{{ title }}</a>
           <ul class="right">
-            <li><a class="left-edge right byu_logo_nav tooltipped" data-tooltip="BYU Homepage" href="https://www.byu.edu/"><img src="{% static 'img/byu-logo-small.gif' %}"></a></li>
-            <li><a class="header-btn right tooltipped" data-tooltip="Purchasing Homepage" href="/"><i class="header-btn material-icons">home</i></a></li>
+            <li><a class="header-btn left" href="/"><img src="{% static 'img/white-notes.gif' %}"></a></li>
+            <li><a class="header-btn right tooltipped" data-tooltip="Homepage" href="/"><i class="header-btn material-icons">home</i></a></li>
             <li>
               {% if user.is_authenticated %}
-              <a class="right-edge right header-btn tooltipped" data-tooltip="Log Out" href="{% url 'logout' %}"><i class="header-btn material-icons">power_settings_new</i></a>
+              <a class="right-edge right header-btn tooltipped" data-tooltip="Log Out" href="{% url 'logout' %}"><i class="header-btn material-icons">exit_to_app</i></a>
               {% else %}
               <a class="right-edge right header-btn tooltipped" data-tooltip="Log In" href="{% url 'login' %}"><i class="header-btn material-icons">person_outline</i></a>
               {% endif %}
             </li>
           </ul>
         </nav>
-        {% endblock %}
       </header>
       <!-- End Header and Tabs -->
       {% endblock %}
+
+      {% block sidenav%}
+      <ul id="slide-out" class="side-nav fixed wide_400">
+
+        <div class="my_logo">
+          <img class="my_img" src="{% static 'img/choir.png'%}">
+        </div>
+        </li>
+
+
+        <div class="log_in" style="margin: 50px;" class="center">
+          {% block login %}
+          {% endblock %}
+        </div>
+      </ul>
+      {%endblock%}
 
       <!-- Login modal structure -->
       {% block modal_login %}
