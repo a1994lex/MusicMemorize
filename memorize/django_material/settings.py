@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '%d$xsf4&f$107#zmglglv5(fu-fm4k#vx+pdf!sneg(5m61)8d')
+SECRET_KEY = '%d$xsf4&f$107#zmglglv5(fu-fm4k#vx+pdf!sneg(5m61)8d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ('*',)
 
@@ -42,10 +42,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'jquery',
-    'simple_search',
-    'djangoformsetjs',
-    'openpyxl',
     'django.contrib.humanize',
 )
 

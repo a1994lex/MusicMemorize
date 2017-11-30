@@ -20,9 +20,11 @@ def index(request):
     Sudo Code for Transfer:
     Look at datatransfer.py
     """
-
-    return render(request, "index.html")
-
+    print(request.user)
+    if request.user.is_anonymous():
+        return redirect('login')
+    else:
+        return render(request, "index.html")
 
 def signup(request):
     print("INSIDE SIGNUP")

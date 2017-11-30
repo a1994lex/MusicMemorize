@@ -1,7 +1,5 @@
 Django==1.11
 django-material==0.12.3
-django-formset-js
-django-simple-search
 python-ldap==2.4.15
 django_cas_ng==3.4.2
 psycopg2==2.6.2
