@@ -9,38 +9,37 @@
     <div class="">
       <h5 id="why_mem">Why Memorize?</h5>
       <p class="explain_why">
-        When a choir memorizes their music, they are able to focus on their director 100%. They are able to give EVERYTHING to the sound they create.
+        When a choir memorizes their music, they are able to focus on their
+        director 100%. They are able to give EVERYTHING to the sound they create.
       </p>
         <h4 class="center">Login</h4>
 
 
-<form action="" method="post" id="login-form"><input type='hidden' name='csrfmiddlewaretoken' />
-
+<form action="" method="post" id="login-form">
+  <input type='hidden' name='csrfmiddlewaretoken' />
+  {% csrf_token %}
 
 <div class="row">
     <div class="input-field col s12 required" id="id_username_container">
-        <i class="material-icons prefix">account_box</i><input id="id_username" maxlength="254" name="username" type="text" autofocus>
+        <i class="material-icons prefix">account_box</i><input id="id_username"
+          maxlength="254" name="username" type="text" autofocus>
         <label for="id_username">Choir Group Name</label>
-
     </div>
 </div>
 
 
 <div class="row">
     <div class="input-field col s12 required" id="id_password_container">
-        <i class="material-icons prefix">lock</i><input id="id_password" name="password" type="password">
+        <i class="material-icons prefix">lock</i><input id="id_password"
+        name="password" type="password">
         <label for="id_password">Password</label>
-
     </div>
 </div>
 
 
-
-
-
-    <div class="action right-align">
-        <button type="submit" class="btn btn-primary">Log in</button>
-    </div>
+<div class="action right-align">
+    <button type="submit" class="btn btn-primary">Log in</button>
+</div>
 
 </form>
 

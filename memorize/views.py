@@ -30,7 +30,9 @@ def signup(request):
     print("INSIDE SIGNUP")
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
+        print("posting signup")
         if form.is_valid():
+            print("form is valid")
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
@@ -40,3 +42,11 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
+
+@login_required
+def home(request):
+    return render(request, "songlist.html")
+
+@login_required
+def song_page(request):
+    return render(request, "songPage.html")

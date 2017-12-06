@@ -1,0 +1,75 @@
+{% extends "home.html"%}
+{% load static %}
+{% load material_form %}
+{% block extra_js%}
+  <script src="{% static 'js/home/home.js' %}"></script>
+{% endblock %}
+
+
+{%block content%}
+
+<div id="wrapper" class="container expand-on-small-only content-body purchase">
+  <div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <p class="card-title">Welcome!</p>
+              <p>Sometimes memorizing the lyrics to songs can be daunting. This
+              is why we have created Memorize for singers to visually practice reciting
+              lyrics to songs.</p>
+            </div>
+            <div class="card-action">
+              <a href="#modal1">tips</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col s12 m12">
+        <div class="card white darken-1">
+          <div class="card-content dark-text">
+              <p class="card-title dark-text">
+              {{ choir.name }} Song List
+              </p>
+              {% for song in songlist %}
+              {% endfor %}
+              <div class="card-body">
+                <a id="songLink" class="btn" href="{% url 'songPage' %}">{{ song.name }}</a>
+              </div>
+          </div>
+        </div>
+  </div>
+
+
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Tips for Song Memorization</h4>
+      <p>Along with the help of this website, there are a number of steps you can take to learn a song by heart.</p>
+      <ul class="collapsible popout" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header"><i class="material-icons">filter_drama</i>Cementing the Song in Your Mind</div>
+          <div class="collapsible-body"><p>Listen to the song as often as possible. It's important that you not just try to memorize written lyrics. Listening to the song is probably the most important step you can take. Listen to the song you are trying to memorize as frequently as possible: in the car, on the bus, in the shower, while doing chores, while doing homework, while getting ready for bed, and generally whenever the opportunity presents itself. You may start to get sick of it, but you will be much closer to your goal of knowing it by heart. This will be especially effective if you sing along with the song. If your goal is to perform the song, it might be a good idea to practice singing. Having the lyrics memorized won't be much help if you can't sing in key.</p></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">style</i>Recite the song as if it were a poem.</div>
+          <div class="collapsible-body"><p>This can help you think of it as a sequence of ideas or events. Many people learn lyrics more effectively when they imagine them as a narrative, rather than just a collection of rhymes.</p></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">mode_edit</i>Write the Lyrics Down.</div>
+          <div class="collapsible-body"><p>Writing down the lyrics on a piece of paper will help you engrave the words into your brain and you can also bring the paper wherever you go so whenever you have time you can look over it. Sing the song out loud or in your head while you read the lyrics on a piece of paper.</p></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">local_hotel</i>Sleep on it.</div>
+          <div class="collapsible-body"><p>Our brain continues to process and learn about things while you sleep. Not only will being well-rested help your brain function at its best, but studying or practicing a new skill right before a good night’s sleep has been shown to increase the speed with which you learn, and your ability to retain that information.</p></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">music_note</i>Make it fun</div>
+          <div class="collapsible-body"><p>Introducing elements of play and/or competition can make the process of memorization more engaging. Time yourself reciting the lyrics to the song you are trying to memorize, and then use that time to set yourself a challenge; try to see how quickly you can recite the whole thing from memory. Draw a visual representation of a line you are struggling with, or a comic using the lyrics as dialogue. Challenge a friend to see which of you can deliver the most dramatic rendition of the song. Anything that helps you enjoy the process of memorization will be a big help.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  {% endblock %}

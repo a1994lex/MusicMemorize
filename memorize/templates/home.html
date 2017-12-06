@@ -5,7 +5,6 @@
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="en" class="no-js"> <!--<![endif]-->
-  <main>
   <head>
      <meta charset="UTF-8" />
      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -30,12 +29,14 @@
      <link rel="stylesheet" href="{% static 'css/purchasing.css' %}"/>
      <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
      <link rel="stylesheet" href="{% static 'css/header.css' %}"/>
-
+     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+         <!-- Font Awesome CSS -->
+         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
      <!-- local_materialize is a POC for customizing classes/elements -->
      <link rel="stylesheet" href="{% static 'css/local_materialize.css' %}"/>
 
      <!-- CUSTOM JS FILES -->
-     <script src="{% static 'js/base.js' %}"></script>
+     <script src="{% static 'js/home.js' %}"></script>
      <script src="{% static 'js/custom_materialize.js' %}"></script>
      <script src="{% static 'js/login.js' %}"></script>
      <!-- Stupid-Table-Sort Plugin -->
@@ -56,63 +57,60 @@
 
      {% endblock %}
 
+     {% block header %}
+
+
+     <!-- End Side-nav -->
+
+     <!-- Header for each page found with content in each app -->
+
+     <nav>
+       <div class="nav-wrapper">
+         <a href="/" class="brand-logo"><img style="padding-right: .5em; padding-left:.5em"src="{% static 'img/white-notes.gif' %}">Memorize</a>
+         <ul class="right">
+           <li>
+             <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+           </li>
+           <li><a class="header-btn right tooltipped" style="margin-right: .5em;" data-tooltip="Homepage" href="/"><i class="header-btn material-icons">home</i></a></li>
+           <li>
+
+             {% if user.is_authenticated %}
+             <a class="right-edge right  tooltipped" data-tooltip="Log Out" href="{% url 'logout' %}"><i class="header-btn material-icons">exit_to_app</i></a>
+             {% else %}
+             <a class="right-edge right tooltipped" data-tooltip="Log In" href="{% url 'login' %}"><i class="header-btn material-icons">person_outline</i></a>
+             {% endif %}
+           </li>
+         </ul>
+       </div>
+     </nav>
+
+     <!-- End Header and Tabs -->
+     {% endblock %}
   </head>
 
-  {% block header %}
-  <header class="col s12">
 
-    <!-- End Side-nav -->
 
-    <!-- Header for each page found with content in each app -->
-
-    <nav>
-      <div class="nav-wrapper">
-        <a href="/" class="brand-logo center"><img style="padding-right: .5em; padding-left:.5em"src="{% static 'img/white-notes.gif' %}">Memorize</a>
-        <ul class="right">
-          <li><a class="header-btn right tooltipped" style="margin-right: .5em;" data-tooltip="Homepage" href="/"><i class="header-btn material-icons">home</i></a></li>
-          <li>
-
-            {% if user.is_authenticated %}
-            <a class="right-edge right  tooltipped" data-tooltip="Log Out" href="{% url 'logout' %}"><i class="header-btn material-icons">exit_to_app</i></a>
-            {% else %}
-            <a class="right-edge right tooltipped" data-tooltip="Log In" href="{% url 'login' %}"><i class="header-btn material-icons">person_outline</i></a>
-            {% endif %}
-          </li>
-        </ul>
+  <ul id="slide-out" class="side-nav">
+    <li>
+      <div class="my_logo">
+        <img class="my_img" src="{% static 'img/choir.png'%}">
       </div>
-    </nav>
-  </header>
-  <!-- End Header and Tabs -->
-  {% endblock %}
-
-  {% block sidenav%}
-  <ul id="slide-out" class="collapsible side-nav fixed wide_400">
-
-    <div class="my_logo">
-      <img class="my_img" src="{% static 'img/choir.png'%}">
-    </div>
-  </li>
-
-
-  <div class="log_in" style="margin: 50px;" class="center">
-    {% block login %}
-    {% endblock %}
-  </div>
-</ul>
-{%endblock%}
-
-  <body {% block body_id %}id="body"{% endblock %} class="main_body">
+    </li>
+    <li><a href="https://www.facebook.com/sharer/sharer.php?u="
+      title="Share on Facebook" target="_blank" class="mdl-button mdl-js-button
+      mdl-button--raised mdl-js-ripple-effect mdl-button--facebook">
+      <i class="fa fa-facebook fa-fw"></i> Facebook</a></li>
+    <li><a href="#!">Second Link</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">  <h5 id="why_mem">Why Memorize?</h5>
+      <p class="explain_why">
+        When a choir memorizes their music, they are able to focus on their
+        director 100%. They are able to give EVERYTHING to the sound they create.
+      </p>
+    </li>
+  </ul>
 
 
-      <!-- Login modal structure -->
-      {% block modal_login %}
-        <div id="login_modal" class="modal">
-          <div class="modal-content">
-            <h4>Modal Header</h4>
-            <p>A bunch of text</p>
-          </div>
-        </div>
-      {% endblock %}
 
       <!-- Search modal structure -->
 
@@ -161,7 +159,6 @@
       <!-- Content found in other apps -->
       {% block content %}
       {% endblock %}
-      </main>
 
       {% block footer %}
         <footer class="footer center">

@@ -1,0 +1,6 @@
+body {
+  /*Linen background, this one has white container and footer space*/
+  background: url("../img/body-bg.png") !important;
+  background-color: #F9FCFE !important;
+  /*background: url("../img/notes.png")*/
+}

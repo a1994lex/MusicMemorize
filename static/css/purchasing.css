@@ -1,89 +1,22 @@
-.verticalSpace{
-
-  padding: 20px;
+.mdl-button.mdl-button--facebook {
+    color: rgb(63, 81, 181)
 }
-.supplierButtonSpace{
-  margin-top: 340px;
+.mdl-button.mdl-button--facebook:focus:not(:active) {
+    background-color: #3b5998
 }
-
-
-.scootLeft{
-  margin-left: 100px;
+.mdl-button--raised.mdl-button--facebook {
+    background: #3b5998;
+    color: rgb(255, 255, 255)
 }
-
-.marginContainer{
-  margin-top: 200em;
-  margin-left: 40em;
-  margin-right: auto;
+.mdl-button--raised.mdl-button--facebook:hover {
+    background-color: #3b5998
 }
-
-#floatContainer{
-  position: relative
+.mdl-button--raised.mdl-button--facebook:active {
+    background-color: #3b5998
 }
-#rightFloat{
-
-  margin-top: 50px;
-  margin-bottom: 10px;
-  margin-left: 20px;
-  width:400px;
-  padding: 100px;
-  position: absolute;
-  top:50%;
-  left: 50%
-
+.mdl-button--raised.mdl-button--facebook:focus:not(:active) {
+    background-color: #3b5998
 }
-#balanceBox{
-  height: 100px;
-
-}
-
-#bottomMargin{
-  padding-top: 1em;
-  margin: 0 auto;
-}
-
-
-#addItemButton {
-    float: right;
-    display: inline;
-}
-
-#searchForm {
-    float: right;
-}
-
-.short {
-    height: 1px;
-}
-
-span.bigMenu {
-    font-size: 5em;
-}
-
-span.header {
-    font-size: 2em;
-    padding: 0px 5px 0px 0px;
-}
-
-#sRes {
-    color: black;
-}
-
-#globalSearch {
-    float: right;
-    margin-top: 10px !important;
-    margin-right: 5px;
-}
-
-.supplierCss {
-  font-size: 1.75em !important;
-}
-
-.expanding_div {
-  height: 10em !important;
-  width: 100% !important;
-}
-
-.cancel-div {
-  margin: 10px;
+.mdl-button--raised.mdl-button--facebook .mdl-ripple {
+    background: rgb(255, 255, 255)
 }
