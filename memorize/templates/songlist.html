@@ -36,7 +36,10 @@
               {% for song in songlist %}
               {% endfor %}
               <div class="card-body">
-                <a id="songLink" class="btn" href="{% url 'songPage' %}">{{ song.name }}</a>
+                <a id="songLink" class="btn" href="{% url 'songPage' %}">
+                  <i class="material-icons left">music_note</i>Jingle Bells
+                  {{ song.name }}
+                </a>
               </div>
           </div>
         </div>

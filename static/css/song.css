@@ -1,6 +1,102 @@
 body {
   /*Linen background, this one has white container and footer space*/
-  background: url("../img/body-bg.png") !important;
+  background: url("../img/body-linen.png") !important;
   background-color: #F9FCFE !important;
   /*background: url("../img/notes.png")*/
+}
+/*.clock {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  background-color: #D3D3D3;
+  border-radius: 2px;
+  display: inline-block;
+  height: 36px;
+  line-height: 36px;
+  outline: 0;
+  padding: 0 2rem;
+  text-transform: uppercase;
+  vertical-align: middle;
+  -webkit-tap-highlight-color: transparent;
+}*/
+.divider {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+.margin-top {
+  margin-top: 30px;
+}
+
+.margin-right {
+  margin-right: 10px;
+}
+
+.modal-content {
+  height: 50vh !important;
+}
+
+#flashcard {
+  height: 40vh !important;
+}
+
+.flashcard-text {
+  width: inherit;
+  padding: 50px;
+}
+
+.flashcard-text h4 {
+  padding-top: 10%;
+}
+
+
+
+
+.page-wrap {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  height: 100vh !important;
+  background-size: cover !important;
+ }
+
+ .main-content {
+   width: 60%;
+ }
+ .main-nav,
+ .main-sidebar {
+   -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+   -moz-box-flex: 1;         /* OLD - Firefox 19- */
+   width: 20%;               /* For old syntax, otherwise collapses. */
+   -webkit-flex: 1;          /* Chrome */
+   -ms-flex: 1;              /* IE 10 */
+   flex: 1;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+ }
+
+ .main-content {
+  -webkit-box-ordinal-group: 2;   /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-ordinal-group: 2;      /* OLD - Firefox 19- */
+  -ms-flex-order: 2;              /* TWEENER - IE 10 */
+  -webkit-order: 2;               /* NEW - Chrome */
+  order: 2;                       /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+.main-nav {
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -ms-flex-order: 1;
+  -webkit-order: 1;
+  order: 1;
+}
+.main-sidebar {
+  -webkit-box-ordinal-group: 3;
+  -moz-box-ordinal-group: 3;
+  -ms-flex-order: 3;
+  -webkit-order: 3;
+  order: 3;
+}
+
+.card {
+  height: 85vh !important;
 }

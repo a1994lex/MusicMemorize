@@ -4,8 +4,6 @@
   height:100px;
   color: red;
   vertical-align: middle; }
-h3{
-  color:red !important; }
 .materialize-red.lighten-5 {
   background-color: #fdeaeb !important; }
 
@@ -6311,6 +6309,7 @@ a.waves-effect .waves-ripple {
   line-height: 32px;
   padding: 0 12px;
   border-radius: 16px;
+  cursor: pointer;
   background-color: #e4e4e4; }
   .chip img {
     float: left;
@@ -6319,7 +6318,6 @@ a.waves-effect .waves-ripple {
     width: 32px;
     border-radius: 50%; }
   .chip i.material-icons {
-    cursor: pointer;
     float: right;
     font-size: 16px;
     line-height: 32px;

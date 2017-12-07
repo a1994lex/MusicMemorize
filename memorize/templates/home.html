@@ -16,6 +16,7 @@
      <link rel="shortcut icon" type="image/png" href="{% static 'img/musicnote.ico' %}"/>
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
      <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+     <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js">
      <!-- Load Jquery -->
      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
      <!--Import Google Icon Font-->
@@ -36,7 +37,7 @@
      <link rel="stylesheet" href="{% static 'css/local_materialize.css' %}"/>
 
      <!-- CUSTOM JS FILES -->
-     <script src="{% static 'js/home.js' %}"></script>
+     <script src="{% static 'js/home/home.js' %}"></script>
      <script src="{% static 'js/custom_materialize.js' %}"></script>
      <script src="{% static 'js/login.js' %}"></script>
      <!-- Stupid-Table-Sort Plugin -->
@@ -88,7 +89,7 @@
      {% endblock %}
   </head>
 
-
+<body>
 
   <ul id="slide-out" class="side-nav">
     <li>
@@ -116,30 +117,6 @@
 
 
       <!-- Modal structure used for several modal's in code -->
-      {% block page_modal %}
-        <div id="page_modal" class="modal all_modal">
-          <a class="right modal-action modal-close cancel-div waves-effect waves-light">
-            <i class="red-text small material-icons">clear</i>
-          </a>
-          <div class="modal-content" id="page_modal_content">
-              <h4>Modal Header</h4>
-              <p>A bunch of text</p>
-          </div>
-        </div>
-      {% endblock %}
-
-      {% block stretch_modal %}
-        <div id="stretch_modal" class="modal">
-          <a class="right modal-action modal-close cancel-div waves-effect waves-light">
-            <i class="red-text small material-icons">clear</i>
-          </a>
-          <div class="modal-content" id="stretch_modal_content">
-              <h4>Modal Header</h4>
-              <p>A bunch of text</p>
-          </div>
-        </div>
-      {% endblock %}
-
 
 
 
