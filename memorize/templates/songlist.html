@@ -23,32 +23,56 @@
             </div>
           </div>
         </div>
+        {% if choir.group_user == None %}
+
+          <div class="col s12 m6">
+            <div class="card white darken-1">
+              <div class="card-content dark-text">
+                <div class="card-body">
+                  <form id="addUserForm" method="POST" class="">
+                    <p>
+                    {% csrf_token %}
+                    {% form form=form %}
+                    {% endform %}
+                    </p>
+                  <button id="addGroup" class="btn waves-effect waves-light">Add a Group User</button>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        {% endif %}
+    </div>
+      <div class="col s12 m12" >
+        <div class="card white darken-1">
+          <div class="card-content dark-text">
+              <span>
+                <p class="card-title dark-text" >
+                  {{ choir.name }} Song List
+                  {% if user.is_staff %}
+                  <a id="addSong" data-tooltip="Add Song" class="tooltipped right btn-floating btn-large waves-effect waves-light green">
+                    <i class="material-icons">add</i>
+                  </a>
+                  {% endif %}
+                </p>
+              </span>
+              <div class="card-body" id="songlist">
+              {% for song in songlist %}
+              <a id="songLink" class="btn" href="{% url 'songPage' song.pk %}">
+                <i class="material-icons left">music_note</i>{{ song.title }}
+                {{ song.name }}
+              </a>
+              {% endfor %}
+              </div>
+          </div>
+        </div>
       </div>
 
 
 
-      <div class="col s12 m12">
-        <div class="card white darken-1">
-          <div class="card-content dark-text">
-              <p class="card-title dark-text">
-              {{ choir.name }} Song List
-              </p>
-              {% for song in songlist %}
-              {% endfor %}
-              <div class="card-body">
-                <a id="songLink" class="btn" href="{% url 'songPage' %}">
-                  <i class="material-icons left">music_note</i>Jingle Bells
-                  {{ song.name }}
-                </a>
-              </div>
-          </div>
-        </div>
-  </div>
-
-
-
   <div id="modal1" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" id="modal_content">
       <h4>Tips for Song Memorization</h4>
       <p>Along with the help of this website, there are a number of steps you can take to learn a song by heart.</p>
       <ul class="collapsible popout" data-collapsible="accordion">

@@ -586,6 +586,7 @@ ul.errorlist {
 ul.errorlist li {
     font-size: 13px;
     display: block;
+    text-decoration-color: #ba2121 !important;
     margin-bottom: 4px;
 }
 

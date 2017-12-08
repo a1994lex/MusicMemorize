@@ -48,7 +48,21 @@ body {
 .flashcard-text h4 {
   padding-top: 10%;
 }
+#lyrics {
+  padding: 20px;
+}
 
+#lyrics p {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-size: 120%;
+  visibility: visible !important;
+}
+
+#lyricTitle{
+  padding: 20px;
+  margin-bottom: 10px;
+}
 
 
 

@@ -92,7 +92,7 @@ DATABASES = {
 }
 
 
-AUTH_IS_STAFF = ["director"]
+AUTH_IS_STAFF = ["directors"]
 
 FILE_UPLOAD_HANDLERS = [
         "django.core.files.uploadhandler.MemoryFileUploadHandler",

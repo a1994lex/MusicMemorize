@@ -1,0 +1,12 @@
+{% load static %}
+{% load material_form %}
+{% block extra_js%}
+  <script src="{% static 'js/home/addSong.js' %}"></script>
+{% endblock%}
+
+<form id="addSongForm" method="POST" class="">
+  {% csrf_token %}
+  {% form form=songForm%}
+  {% endform %}
+  <button id="saveSong" class="btn waves-effect waves-light" type="submit">Add Song</button>
+</form>

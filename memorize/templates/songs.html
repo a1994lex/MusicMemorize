@@ -1,0 +1,9 @@
+{% load static %}
+{% load material_form %}
+
+{% for song in songlist %}
+<a id="songLink" class="btn" href="{% url 'songPage' song.pk %}">
+  <i class="material-icons left">music_note</i>{{ song.title }}
+  {{ song.name }}
+</a>
+{% endfor %}

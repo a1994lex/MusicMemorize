@@ -7,11 +7,11 @@
 
 <div style ="width: 400px">
     <div class="">
-      <h5 id="why_mem">Why Memorize?</h5>
+      <!-- <h5 id="why_mem">Why Memorize?</h5>
       <p class="explain_why">
         When a choir memorizes their music, they are able to focus on their
         director 100%. They are able to give EVERYTHING to the sound they create.
-      </p>
+      </p> -->
         <h4 class="center">Login</h4>
 
 
@@ -23,7 +23,7 @@
     <div class="input-field col s12 required" id="id_username_container">
         <i class="material-icons prefix">account_box</i><input id="id_username"
           maxlength="254" name="username" type="text" autofocus>
-        <label for="id_username">Choir Group Name</label>
+        <label for="id_username">Username</label>
     </div>
 </div>
 
@@ -37,8 +37,8 @@
 </div>
 
 
-<div class="action right-align">
-    <button type="submit" class="btn btn-primary">Log in</button>
+<div class="action center">
+    <button type="submit" style="margin-top: 30px;" class="btn-large btn-primary">Log in</button>
 </div>
 
 </form>
@@ -46,7 +46,7 @@
     </div>
 
 
-<a href="{% url 'signup' %}">Click Here to create a new account for your group</a>
+<a class="btn blue-grey lighten-1" style="margin-top: 30px;" href="{% url 'signup' %}">Create a new account</a>
 </div>
 
 {% endblock%}
