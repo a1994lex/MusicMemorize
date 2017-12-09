@@ -90,8 +90,11 @@ def home(request):
 def grab_songs(request):
     if 'choir' in request.session:
         choirid = request.session['choir']
-        # choir = Choir.objects.get(pk=choirid)
-    context = {'songlist': choir.song_set.all()}
+        choir = Choir.objects.get(pk=choirid)
+        songlist = choir.song_set.all()
+    else:
+        songlist = None
+    context = {'songlist': songlist}
     return render(request, "songs.html", context)
 
 @user_passes_test(lambda u: u.is_staff)
