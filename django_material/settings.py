@@ -99,7 +99,6 @@ FILE_UPLOAD_HANDLERS = [
         "django.core.files.uploadhandler.TemporaryFileUploadHandler"]
 
 LOGIN_URL = "/login"
-LOGIN_REDIRECT_URL = '/home'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

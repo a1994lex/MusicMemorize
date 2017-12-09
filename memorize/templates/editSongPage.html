@@ -1,0 +1,122 @@
+{% extends "home.html" %}
+{% load static %}
+{% load material_form %}
+{% block extra_js%}
+  <script src="{% static 'js/home/songPage.js' %}"></script>
+  <script src="{% static 'js/jquery.countdown.js' %}"></script>
+  <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+{% endblock %}
+
+{%block header%}
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo"><img style="padding-right: .5em; padding-left:.5em"src="{% static 'img/white-notes.gif' %}">Memorize</a>
+    <ul class="right">
+      <li>
+        <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+      </li>
+      <li><a class="header-btn right tooltipped" style="margin-right: .5em;" data-tooltip="Homepage" href="/"><i class="header-btn material-icons">home</i></a></li>
+      <li>
+
+        {% if user.is_authenticated %}
+        <a class="right-edge right  tooltipped" data-tooltip="Log Out" href="{% url 'logout' %}"><i class="header-btn material-icons">exit_to_app</i></a>
+        {% else %}
+        <a class="right-edge right tooltipped" data-tooltip="Log In" href="{% url 'login' %}"><i class="header-btn material-icons">person_outline</i></a>
+        {% endif %}
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+{%block content%}
+<link rel="stylesheet" href="{% static 'css/song.css' %}"/>
+<!-- <div id="wrapper" class="container widescreen expand-on-small-only content-body"> -->
+<div class="page-wrap">
+
+  <!-- <section class="main-content" role="main">
+
+  </section> -->
+  <div id="content"  class="main-content row" role="main">
+    <form id="editSongForm" method="POST" class="">
+      {% csrf_token %}
+    <div style="height: 100%;" class="col s12 m12 l12">
+
+      <div id="workzone" class="card">
+        <div class="card-content">
+            <div class="row">
+              <div class="col s2 m2"></div>
+              <div class="col s8 m8">
+                <h4 id="lyricTitle">{{form.title}}</h4>
+                <div id="lyrics">
+                {{form.text}}
+                </div>
+              </div>
+              <div class="col s2 m2"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="main-nav" role="navigation">
+    Links
+  </div> -->
+  <div id="content" class=" row main-nav">
+    <div style="height: 100%;" class="col s12 m12 l12">
+
+      <div class="card grey darken-2 box-parent">
+        <div class="card-content">
+            <ul>
+
+              <li>
+                <a id="saveSong" class="green btn waves-effect waves-light dark-text" type="submit">
+                  <i class="material-icons right">save</i>Save Changes
+                </a>
+              </li>
+              <li><div class="divider"></div></li>
+              <li>
+                <a href="{% url 'songPage' song.pk %}" class="grey lighten-1 btn waves-effect waves-light dark-text">
+
+                <i class="material-icons left">keyboard_return</i>  return to view</a>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <aside class="main-sidebar" role="complementary">
+    Sidebar
+  </aside> -->
+
+  <div id="content" class="main-sidebar row" role="complementary">
+    <div style="height: 100%"class="col s12 m12 l12">
+      <div id="plist" class="card">
+        <div class="card-content">
+            <h5>Notes from your Director:</h5>
+            <p>
+              {{ form.notes }}
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+
+<div id="page_modal" class="modal all_modal">
+  <a class="right modal-action modal-close waves-effect waves-light">
+  </a>
+  <div class="modal-content" id="page_modal_content">
+    <div id="flashcard" class="center">
+      <div class="front flashcard-text center grey lighten-3">
+        <h4>Just hear those sleigh bells</h4>
+      </div>
+      <div class="back flashcard-text center grey">
+        <h4>Dingling</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -64,16 +64,19 @@ body {
   margin-bottom: 10px;
 }
 
-
-
 .page-wrap {
   display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
   display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
   display: -ms-flexbox;      /* TWEENER - IE 10 */
   display: -webkit-flex;     /* NEW - Chrome */
   display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
-  height: 100vh !important;
+  height: 100% !important;
   background-size: cover !important;
+  margin: 20px;
+ }
+
+ .card {
+   height: 100%;
  }
 
  .main-content {
@@ -111,6 +114,10 @@ body {
   order: 3;
 }
 
-.card {
-  height: 85vh !important;
+.box-parent {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
 }

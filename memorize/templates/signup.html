@@ -6,15 +6,12 @@
   <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %}
-    {% for field in form%}
-    <p>
-     {{ field.label_tag }}
-     {% for error in field.errors %}
-     <p style="color: red">{{ error }}</p>
-     {% endfor %}
-     {{ field }}
-   </p>
-    {% endfor %}
+    {% form form=form %}
+    {% part form.username prefix %}<i class="material-icons prefix">account_box</i>{% endpart %}
+    {% part form.password1 prefix %}<i class="material-icons prefix">lock_outline</i>{% endpart %}
+    {% part form.password2 prefix %}<i class="material-icons prefix">lock</i>{% endpart %}
+
+    {% endform %}
     <div class="center">
       <button class="btn waves-effect waves-light" type="submit">Sign up</button>
     </div>

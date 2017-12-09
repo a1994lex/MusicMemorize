@@ -124,22 +124,30 @@ def song_page(request, song_id):
     flashcards = None
     if FlashCard.objects.filter(song=song_id):
         flashcards = FlashCard.objects.get(song=song_id)
-    if (song.choir.director == request.user):
-        form = SongForm(instance=song)
-        if request.method == "POST":
-            form = SongForm(request.POST, instance=song_id)
-            if form.is_valid():
-                song = form.save()
-                song.save()
-        context = {"form": form, "song": song, "flashcards": flashcards}
-    elif song.choir.group_user != request.user:
-        raise Http404("You should not have access to this song")
-    else:
-        context = {"song": song, "flashcards": flashcards}
+    print(song)
+    context = {"song": song, "flashcards": flashcards}
     return render(request, "songPage.html", context)
+
 
 def flashcard_edit(request, flashid):
     return
 
 def flashcard_new(request):
     return
+
+@user_passes_test(lambda u: u.is_staff)
+def edit_song(request):
+    if 'songid' not in request.session:
+        return redirect('/')
+    song = Song.objects.get(pk=request.session['songid'])
+    flashcards = None
+    if FlashCard.objects.filter(song=song):
+        flashcards = FlashCard.objects.get(song=song_id)
+    form = SongForm(instance=song)
+    if request.method == "POST":
+        form = SongForm(request.POST, instance=song)
+        if form.is_valid():
+            song = form.save()
+            song.save()
+    context = {"form": form, "song": song, "flashcards": flashcards}
+    return render(request, "editSongPage.html", context)

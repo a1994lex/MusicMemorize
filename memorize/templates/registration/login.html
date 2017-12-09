@@ -18,7 +18,7 @@
 <form action="" method="post" id="login-form">
   <input type='hidden' name='csrfmiddlewaretoken' />
   {% csrf_token %}
-
+<!--
 <div class="row">
     <div class="input-field col s12 required" id="id_username_container">
         <i class="material-icons prefix">account_box</i><input id="id_username"
@@ -34,8 +34,12 @@
         name="password" type="password">
         <label for="id_password">Password</label>
     </div>
-</div>
+</div> -->
 
+{% form form=form %}
+{% part form.username prefix %}<i class="material-icons prefix">account_box</i>{% endpart %}
+{% part form.password prefix %}<i class="material-icons prefix">lock</i>{% endpart %}
+{% endform %}
 
 <div class="action center">
     <button type="submit" style="margin-top: 30px;" class="btn-large btn-primary">Log in</button>

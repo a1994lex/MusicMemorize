@@ -5,6 +5,7 @@
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="en" class="no-js"> <!--<![endif]-->
+
   <head>
      <meta charset="UTF-8" />
      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -57,14 +58,14 @@
      {% block extra_js %}
 
      {% endblock %}
+</head>
 
+<body>
+  <header>
      {% block header %}
-
-
      <!-- End Side-nav -->
 
      <!-- Header for each page found with content in each app -->
-
      <nav>
        <div class="nav-wrapper">
          <a href="/" class="brand-logo"><img style="padding-right: .5em; padding-left:.5em"src="{% static 'img/white-notes.gif' %}">Memorize</a>
@@ -84,12 +85,8 @@
          </ul>
        </div>
      </nav>
-
      <!-- End Header and Tabs -->
      {% endblock %}
-  </head>
-
-<body>
 
   <ul id="slide-out" class="side-nav">
     <li>
@@ -111,6 +108,8 @@
     </li>
   </ul>
 
+</header>
+<main>
 
 
       <!-- Search modal structure -->
@@ -136,23 +135,22 @@
       <!-- Content found in other apps -->
       {% block content %}
       {% endblock %}
+  </main>
 
-      {% block footer %}
-        <footer class="footer center">
-          <p>
-            <a class="footer_link" href="https://www.linkedin.com/in/alexandra-wilson-305134133/">Alex Wilson Linked In </a>
-            <a class="footer_link" href="https://www.facebook.com/alex.powley.3">Alex Wilson Facebook</a>
-            <a class="footer_link" href="http://lds.org/">The Church of Jesus Christ of Latter-day Saints</a>
-          </p>
-          <p>
-            <a class="footer_link" href="http://home.byu.edu/home/copyright">Copyright© 2017, All Rights Reserved</a>
-          </p>
-        </footer>
-      {% endblock %}
 
-  </body>
     <!-- Footer content -->
 
-
-
+    {% block footer %}
+    <!-- <footer id="footer" class="center">
+      <p>
+        <a class="footer_link" href="https://www.linkedin.com/in/alexandra-wilson-305134133/">Alex Wilson Linked In </a>
+        <a class="footer_link" href="https://www.facebook.com/alex.powley.3">Alex Wilson Facebook</a>
+        <a class="footer_link" href="http://lds.org/">The Church of Jesus Christ of Latter-day Saints</a>
+      </p>
+      <p>
+        <a class="footer_link" href="http://home.byu.edu/home/copyright">Copyright© 2017, All Rights Reserved</a>
+      </p>
+    </footer> -->
+    {% endblock %}
+  </body>
 </html>

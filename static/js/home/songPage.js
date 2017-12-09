@@ -46,6 +46,13 @@ $(document).ready(function(){
     forceHeight: 'true'
   });
 
+  $('#lyrics textarea').each(function(){
+    $(this).css({'height': '600px'});
+  });
+
+  $('#id_notes').each(function(){
+    $(this).css({'height': '300px'});
+  });
 
   $('#lyrics p').each(function(){
     numverses += 1;
