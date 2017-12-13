@@ -1,0 +1,12 @@
+{% load static %}
+{% load material_form%}
+
+
+{% for card in flashcards %}
+<div id= {{ card.id }} class="cardnum">
+  <span class="cardid">{{ card.id }}</span>
+  <span class="cardtitle">{{ card.title }}</span>
+  <span class="cardfront">{{ card.front }}</span>
+  <span class="cardback">{{ card.back }}</span>
+</div>
+{% endfor %}

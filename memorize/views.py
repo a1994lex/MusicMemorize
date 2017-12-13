@@ -80,6 +80,7 @@ def home(request):
                 print(username)
                 password = form.cleaned_data.get('password')
                 choir.group_user = User.objects.create_user(username=username, password=password)
+                choir.password = password
                 choir.save()
         context = {'choir': choir, 'songlist': songlist, 'form': form}
     else:
@@ -111,6 +112,8 @@ def add_song(request):
             song = form.save()
             song.choir = Choir.objects.get(pk=choirid)
             song.save()
+        else:
+            print("NOT VALID")
     context = {"songForm": form}
     return render(request, "addSong.html", context)
 
@@ -121,11 +124,9 @@ def song_page(request, song_id):
     if not Song.objects.filter(pk=song_id).exists():
         raise Http404("This song doesn't exist")
     song = Song.objects.get(pk=song_id)
-    flashcards = None
-    if FlashCard.objects.filter(song=song_id):
-        flashcards = FlashCard.objects.get(song=song_id)
-    print(song)
-    context = {"song": song, "flashcards": flashcards}
+    flashcards = FlashCard.objects.filter(song=song_id)
+    choir = Choir.objects.get(pk=request.session['choir'])
+    context = {"song": song, "flashcards": flashcards, "choir": choir}
     return render(request, "songPage.html", context)
 
 
@@ -140,14 +141,63 @@ def edit_song(request):
     if 'songid' not in request.session:
         return redirect('/')
     song = Song.objects.get(pk=request.session['songid'])
-    flashcards = None
-    if FlashCard.objects.filter(song=song):
-        flashcards = FlashCard.objects.get(song=song_id)
+    flashcards = FlashCard.objects.filter(song=song)
     form = SongForm(instance=song)
+    print(form)
     if request.method == "POST":
         form = SongForm(request.POST, instance=song)
         if form.is_valid():
             song = form.save()
             song.save()
-    context = {"form": form, "song": song, "flashcards": flashcards}
+    choir = Choir.objects.get(pk=request.session['choir'])
+    context = {"form": form, "song": song, "flashcards": flashcards, "choir":choir}
     return render(request, "editSongPage.html", context)
+
+@user_passes_test(lambda u: u.is_staff)
+def add_card(request):
+    if 'songid' not in request.session:
+        return redirect('/')
+    song = Song.objects.get(pk=request.session['songid'])
+    cardform = FlashCardForm()
+    if request.method == "POST":
+        print("POST")
+        flashid = request.POST.get('edit')
+        if flashid:
+            cardform = FlashCardForm(request.POST, instance=flashid)
+        else:
+            cardform = FlashCardForm(request.POST)
+        if cardform.is_valid():
+            print("FORM IS VALID")
+            card = cardform.save()
+            card.song = song
+            card.save()
+            print("Card saved")
+    context = {"cardform": cardform}
+    return render(request, "addCard.html", context)
+
+def get_cards(request):
+    if 'songid' not in request.session:
+        return redirect('/')
+    song = Song.objects.get(pk=request.session['songid'])
+    flashcards = FlashCard.objects.filter(song=song)
+    print("FLASHCARDS {}".format(flashcards))
+    context = { 'flashcards': flashcards}
+    return render(request, "cards.html", context)
+
+
+@user_passes_test(lambda u: u.is_staff)
+def ajax_edit_song(request):
+    if 'songid' not in request.session:
+        return redirect('/')
+    song = Song.objects.get(pk=request.session['songid'])
+    flashcards = FlashCard.objects.filter(song=song)
+    form = SongForm(instance=song)
+    print(form)
+    if request.method == "POST":
+        form = SongForm(request.POST, instance=song)
+        if form.is_valid():
+            song = form.save()
+            song.save()
+    choir = Choir.objects.get(pk=request.session['choir'])
+    context = {"form": form, "song": song, "flashcards": flashcards, "choir": choir}
+    return render(request, "ajax_editSongPage.html", context)

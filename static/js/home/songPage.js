@@ -36,6 +36,7 @@ $(document).ready(function(){
       $(this).html('Timer Start');
     });
   });
+  $('.tooltipped').tooltip({delay: 50});
 
   $('#flashcards').on('click', function(event){
       $('#page_modal').modal('open');
@@ -178,6 +179,32 @@ $(document).ready(function(){
 
 
 
-
+// EDIT SONG SUBMIT
+$('#saveSongChanges').on('click', function(event){
+  console.log("Recognized click");
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  $.ajax({
+    url : '/ajax-edit-song/',
+    type : 'POST',
+    data : $('#editSongForm').serialize(),
+    success : function(data){
+      $('#ajaxDiv').html(data);
+      // console.log(data);
+      if ($('#ajaxDiv').find('.errorlist').html() == undefined){
+        $('#page_modal_content').html('<div class="center"><h3>Saved!<i class='+
+        '"my_inline material-icons prefix large green-text">check</i></h3><a href="/"'+
+        'class="btn-large margin-top">Return to Homepage</a></div>');
+        $('#page_modal').modal('open')
+      }
+      else {
+        console.log("errors");
+      }
+    },
+    error : function(xhr, errmsn, err){
+      console.log("Failure to load new supplier form")
+    }
+  });
+});
 
 });

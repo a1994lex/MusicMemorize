@@ -19,6 +19,12 @@ body {
   vertical-align: middle;
   -webkit-tap-highlight-color: transparent;
 }*/
+
+.my_inline {
+    display: inline-flex;
+    vertical-align: middle;
+}
+
 .divider {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -34,6 +40,10 @@ body {
 
 .modal-content {
   height: 50vh !important;
+}
+
+ul.margined li {
+  margin-top: 1em;
 }
 
 #flashcard {
@@ -120,4 +130,27 @@ body {
   flex-direction: column;
   justify-content: center;
 
+}
+
+
+ul.errorlist {
+    margin: 0 0 4px;
+    padding: 0;
+    color: #ba2121 !important;
+    background: #fff;
+}
+
+ul.errorlist li {
+    font-size: 13px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+ul.errorlist li:first-child {
+    margin-top: 0;
+}
+
+ul.errorlist li a {
+    color: inherit;
+    text-decoration: underline;
 }

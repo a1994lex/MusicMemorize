@@ -5,6 +5,8 @@
   <script src="{% static 'js/home/songPage.js' %}"></script>
   <script src="{% static 'js/jquery.countdown.js' %}"></script>
   <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+  <script src="{% static 'js/home/flashcard.js' %}"></script>
+
 {% endblock %}
 
 {%block header%}
@@ -30,93 +32,135 @@
 {% endblock %}
 {%block content%}
 <link rel="stylesheet" href="{% static 'css/song.css' %}"/>
+<!-- <link rel="stylesheet" href="{% static 'admin/css/base.css' %}"/> -->
 <!-- <div id="wrapper" class="container widescreen expand-on-small-only content-body"> -->
-<div class="page-wrap">
+<div id="ajaxDiv">
+  <form id="editSongForm" method="POST">
+    {% csrf_token %}
+    <div class="page-wrap">
+      <!-- <section class="main-content" role="main">
 
-  <!-- <section class="main-content" role="main">
+      </section> -->
+      <div id="content"  style="margin-left: 10px;margin-right: 10px;"class="main-content row" role="main">
+        <div style="height: 100%;" class="col s12 m12 l12">
 
-  </section> -->
-  <div id="content"  class="main-content row" role="main">
-    <form id="editSongForm" method="POST" class="">
-      {% csrf_token %}
-    <div style="height: 100%;" class="col s12 m12 l12">
+          <div id="workzone" class="card">
+            <div class="card-content">
+                <div class="row">
+                  <div class="col s2 m2"></div>
+                  <div class="col s8 m8">
+                    <h4 id="lyricTitle">{{form.title}}</h4>
 
-      <div id="workzone" class="card">
-        <div class="card-content">
-            <div class="row">
-              <div class="col s2 m2"></div>
-              <div class="col s8 m8">
-                <h4 id="lyricTitle">{{form.title}}</h4>
-                <div id="lyrics">
-                {{form.text}}
+                    <div id="lyrics">
+
+                    {{form.text}}
+
+                    </div>
+                  </div>
+                  <div class="col s2 m2"></div>
                 </div>
-              </div>
-              <div class="col s2 m2"></div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="main-nav" role="navigation">
+        Links
+      </div> -->
+      <div id="content" class=" row main-nav">
+        <div style="height: 100%;" class="col s12 m12 l12">
+
+          <div class="card grey darken-2 box-parent">
+            <div class="card-content">
+                <ul class="margined">
+
+                  <li>
+                    <a id="saveSongChanges" class="green btn waves-effect waves-light dark-text" type="submit">
+                      <i class="material-icons right">save</i>Save Changes
+                    </a>
+                  </li>
+                  <li>
+                    <a id="editFlash" class="grey lighten-1 btn waves-effect waves-light dark-text" href="#page_modal">
+                      <i class="material-icons right">style</i> Flashcards</a>
+                  </li>
+                  <li>
+                    <a id="deleteSong" class="red btn waves-effect waves-light" href= "{url 'deleteSong' song.pk}">
+                      <i class="material-icons right">delete</i> delete song</a>
+                  </li>
+                  <li><div class="divider"></div></li>
+                  <li>
+                    <a href="{% url 'songPage' song.pk %}" class="grey lighten-1 btn waves-effect waves-light dark-text">
+
+                    <i class="material-icons left">keyboard_return</i>  return to view</a>
+                  </li>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <aside class="main-sidebar" role="complementary">
+        Sidebar
+      </aside> -->
+
+      <div id="content" class="main-sidebar row" role="complementary">
+        <div style="height: 100%"class="col s12 m12 l12">
+          <div id="plist" class="card">
+            <div class="card-content">
+                <h5>Notes from your Director:</h5>
+                <p>
+                  {{ form.notes }}
+                </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- <div class="main-nav" role="navigation">
-    Links
-  </div> -->
-  <div id="content" class=" row main-nav">
-    <div style="height: 100%;" class="col s12 m12 l12">
-
-      <div class="card grey darken-2 box-parent">
-        <div class="card-content">
-            <ul>
-
-              <li>
-                <a id="saveSong" class="green btn waves-effect waves-light dark-text" type="submit">
-                  <i class="material-icons right">save</i>Save Changes
-                </a>
-              </li>
-              <li><div class="divider"></div></li>
-              <li>
-                <a href="{% url 'songPage' song.pk %}" class="grey lighten-1 btn waves-effect waves-light dark-text">
-
-                <i class="material-icons left">keyboard_return</i>  return to view</a>
-              </li>
-            </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- <aside class="main-sidebar" role="complementary">
-    Sidebar
-  </aside> -->
-
-  <div id="content" class="main-sidebar row" role="complementary">
-    <div style="height: 100%"class="col s12 m12 l12">
-      <div id="plist" class="card">
-        <div class="card-content">
-            <h5>Notes from your Director:</h5>
-            <p>
-              {{ form.notes }}
-            </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
+  </form>
 </div>
+
 
 <div id="page_modal" class="modal all_modal">
   <a class="right modal-action modal-close waves-effect waves-light">
   </a>
+  <div id="all_cards">
+    {% for card in flashcards %}
+    <div id= {{ card.id }} class="cardnum">
+      <span class="cardid">{{ card.id }}</span>
+      <span class="cardtitle">{{ card.title }}</span>
+      <span class="cardfront">{{ card.front }}</span>
+      <span class="cardback">{{ card.back }}</span>
+    </div>
+    {% endfor %}
+  </div>
   <div class="modal-content" id="page_modal_content">
-    <div id="flashcard" class="center">
+    <div id="flashcard">
       <div class="front flashcard-text center grey lighten-3">
-        <h4>Just hear those sleigh bells</h4>
+        <h4></h4>
+        {% if user.is_staff %}
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+          <a id="editCard" data-tooltip="Edit" class="waves-effect btn-floating red btn-large ">
+            <i class="material-icons">edit</i>
+          </a>
+        </div>
+        {% endif %}
       </div>
       <div class="back flashcard-text center grey">
-        <h4>Dingling</h4>
+        <h4></h4>
       </div>
     </div>
   </div>
+  <div class="modal-footer">
+  {% if flashcards %}
+  <a id="nextCard" class="waves-effect btn-flat">Next</a>
+  {% endif %}
+  {% if user.is_staff %}
+  <a id="newCard" class="left waves-effect btn-flat green-text">Create New Card<i class="material-icons right">add</i></a>
+  {% endif %}
+  </div>
+
+
+
 </div>
 
 {% endblock %}

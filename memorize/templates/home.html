@@ -106,6 +106,8 @@
         director 100%. They are able to give EVERYTHING to the sound they create.
       </p>
     </li>
+    <li><div class="divider"></div></li>
+    <li><a href="#secondary_modal">My group user</a>
   </ul>
 
 </header>
@@ -122,12 +124,24 @@
       <!-- Modal structure used for any modals that are called from inside another modal -->
       {% block secondary_modal %}
         <div id="secondary_modal" class="modal all_modal">
-          <a class="right modal-action modal-close cancel-div waves-effect waves-light">
-            <i class="red-text small material-icons">clear</i>
+          <a class="right modal-action modal-close waves-effect waves-light">
+
           </a>
           <div class="modal-content" id="secondary_modal_content">
-              <h4>Modal Header</h4>
-              <p>A bunch of text</p>
+              <h4>Group User</h4>
+              <p>A group user is important when you would like others
+              to view and memorize your songs. Simply give them the group
+            username and password for a login, and they will be able to
+            view the songs and practice them</p>
+
+            {% if choir %}
+            <h3>Username: {{choir.group_user.username }}</h3>
+            <h3>Password: {{choir.password }}</h3>
+            {% else %}
+            <h3>It appears you do not have a group user yet</h3>
+            {% endif %}
+
+
           </div>
         </div>
       {% endblock %}

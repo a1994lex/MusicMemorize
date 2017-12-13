@@ -1,0 +1,15 @@
+{% load static %}
+{% load material_form %}
+{% block extra_js%}
+  <script src="{% static 'js/home/flashcard.js' %}"></script>
+{% endblock%}
+<div id="addCardDiv" style="heigth:100%; width:100%;">
+<div class="front flashcard-text grey lighten-3">
+<form id="addCardForm" style="heigth:100%; width:100%;"method="POST">
+  {% csrf_token %}
+  {% form form=cardform%}
+  {% endform %}
+<a id="saveCard" class="btn waves-effect waves-light">Save</a>
+</form>
+</div>
+</div>

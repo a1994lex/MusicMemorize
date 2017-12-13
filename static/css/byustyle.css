@@ -2,7 +2,8 @@ body {
   /*Linen background, this one has white container and footer space*/
   /*background: url("../img/body-bg.png");*/
   /*background-color: #F9FCFE;*/
-  background: url("../img/notes.png")
+  background: url("../img/notes.png");
+  background-size: cover;
 }
 .action_buttons .btn {
   margin-right: .25rem;

@@ -20,6 +20,10 @@ class Choir(models.Model):
     group_name = models.CharField(
                 max_length=100,
                 default="Best Choir in the World",)
+    password = models.CharField(
+                max_length=150,
+                null=True,
+                blank=True,)
 
 class Song(models.Model):
     """
@@ -42,4 +46,4 @@ class FlashCard(models.Model):
     """
     front = models.CharField(max_length=500,)
     back = models.CharField(max_length=500,)
-    song = models.ForeignKey(Song, on_delete=models.CASCADE,)
+    song = models.ForeignKey(Song, on_delete=models.CASCADE, null=True)

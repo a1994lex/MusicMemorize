@@ -165,6 +165,13 @@
       </div>
     </div>
   </div>
+  {% if user.is_staff %}
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a id="addCard" class="btn-floating btn-large green">
+      <i class="material-icons">add</i>
+    </a>
+  </div>
+  {% endif %}
 </div>
 
 {% endblock %}
