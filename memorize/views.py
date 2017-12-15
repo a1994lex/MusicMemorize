@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, Http404
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from .forms import *
 # from django.contrib.auth.decorators import user_is_admin
 
@@ -26,6 +26,10 @@ def index(request):
         return redirect('login')
     else:
         return render(request, "index.html")
+
+def logout_view(request):
+    logout(request)
+    return render(request, 'logout.html')
 
 def signup(request):
     print("INSIDE SIGNUP")
@@ -60,6 +64,7 @@ def getChoir(user):
 
 @login_required
 def home(request):
+    print "in home"
     if 'songid' in request.session:
         del request.session['songid']
     if 'choir' in request.session:
@@ -155,25 +160,42 @@ def edit_song(request):
 
 @user_passes_test(lambda u: u.is_staff)
 def add_card(request):
+    edit = False;
     if 'songid' not in request.session:
         return redirect('/')
     song = Song.objects.get(pk=request.session['songid'])
-    cardform = FlashCardForm()
+    flashid = request.GET.get('edit')
     if request.method == "POST":
         print("POST")
         flashid = request.POST.get('edit')
+        print('edit id {}'.format(flashid))
         if flashid:
-            cardform = FlashCardForm(request.POST, instance=flashid)
+            cardform = FlashCardForm(request.POST, instance=FlashCard.objects.get(pk=flashid))
         else:
             cardform = FlashCardForm(request.POST)
         if cardform.is_valid():
             print("FORM IS VALID")
-            card = cardform.save()
-            card.song = song
-            card.save()
+            if flashid:
+                cardform.save()
+            else:
+                card = cardform.save()
+                card.song = song
+                card.save()
             print("Card saved")
-    context = {"cardform": cardform}
+    elif flashid:
+        cardform = FlashCardForm(instance=FlashCard.objects.get(pk=flashid))
+        edit = True
+    else:
+        cardform = FlashCardForm()
+    context = {"cardform": cardform, "edit": edit}
     return render(request, "addCard.html", context)
+
+@user_passes_test(lambda u: u.is_staff)
+def delete_card(request):
+    card_id = request.GET.get('deleteId')
+    flashcard = FlashCard.objects.filter(pk=card_id)
+    flashcard.delete()
+    return redirect('getCards')
 
 def get_cards(request):
     if 'songid' not in request.session:
@@ -201,3 +223,15 @@ def ajax_edit_song(request):
     choir = Choir.objects.get(pk=request.session['choir'])
     context = {"form": form, "song": song, "flashcards": flashcards, "choir": choir}
     return render(request, "ajax_editSongPage.html", context)
+
+@user_passes_test(lambda u: u.is_staff)
+def delete_song(request):
+    if 'songid' in request.session:
+        print(request.session['songid'])
+        try:
+            song = Song.objects.get(pk=request.session['songid'])
+            song.delete()
+        except:
+            print "song is gone"
+        del request.session['songid']
+    return redirect('home', permanent=True)

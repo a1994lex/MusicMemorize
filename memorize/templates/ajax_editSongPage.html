@@ -6,12 +6,12 @@
 {% endblock %}
 <link rel="stylesheet" href="{% static 'css/song.css' %}"/>
 <form id="editSongForm" method="POST">
+  {% csrf_token %}
   <div class="page-wrap">
     <!-- <section class="main-content" role="main">
 
     </section> -->
-    <div id="content"  class="main-content row" role="main">
-        {% csrf_token %}
+    <div id="content"  style="margin-left: 10px;margin-right: 10px;"class="main-content row" role="main">
       <div style="height: 100%;" class="col s12 m12 l12">
 
         <div id="workzone" class="card">
@@ -19,11 +19,11 @@
               <div class="row">
                 <div class="col s2 m2"></div>
                 <div class="col s8 m8">
-                  {{ form.title.errors }}
                   <h4 id="lyricTitle">{{form.title}}</h4>
+
                   <div id="lyrics">
+
                   {{form.text}}
-                  {{ form.text.errors }}
 
                   </div>
                 </div>
@@ -42,12 +42,20 @@
 
         <div class="card grey darken-2 box-parent">
           <div class="card-content">
-              <ul>
+              <ul class="margined">
 
                 <li>
                   <a id="saveSongChanges" class="green btn waves-effect waves-light dark-text" type="submit">
                     <i class="material-icons right">save</i>Save Changes
                   </a>
+                </li>
+                <li>
+                  <a id="editFlash" class="grey lighten-1 btn waves-effect waves-light dark-text" href="#page_modal">
+                    <i class="material-icons right">style</i> Flashcards</a>
+                </li>
+                <li>
+                  <a id="deleteSong" class="red btn waves-effect waves-light" href= "{% url 'deleteSong' %}">
+                    <i class="material-icons right">delete</i> delete song</a>
                 </li>
                 <li><div class="divider"></div></li>
                 <li>
@@ -71,9 +79,7 @@
           <div class="card-content">
               <h5>Notes from your Director:</h5>
               <p>
-                {{ form.notes.errors }}
                 {{ form.notes }}
-
               </p>
           </div>
         </div>

@@ -4,8 +4,8 @@
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="en" class="no-js"> <!--<![endif]-->
-  <main>
+<html lang="en" class="no-js" style="height:100%;"> <!--<![endif]-->
+
   <head>
      <meta charset="UTF-8" />
      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -26,10 +26,11 @@
      <link rel="stylesheet" href="{% static 'material/css/forms.css' %}"/>
      <!--<link rel="stylesheet" href="{% static 'material/css/jquery.datetimepicker.css' %}"/>-->
      <link rel="stylesheet" href="{% static 'material/css/materialize.css' %}"/>
-     <link rel="stylesheet" href="{% static 'css/byustyle.css' %}"/>
-     <link rel="stylesheet" href="{% static 'css/purchasing.css' %}"/>
-     <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
-      <link rel="stylesheet" href="{% static 'admin/css/base.css' %}"/>
+     <link rel="stylesheet" href="{% static 'css/alex.css' %}"/>
+
+
+     <!-- <link rel="stylesheet" href="{% static 'css/base.css' %}"/> -->
+      <!-- <link rel="stylesheet" href="{% static 'admin/css/base.css' %}"/> -->
      <link rel="stylesheet" href="{% static 'css/header.css' %}"/>
 
      <!-- local_materialize is a POC for customizing classes/elements -->
@@ -58,9 +59,9 @@
      {% endblock %}
 
   </head>
-
-  {% block header %}
+  <body style="min-height:100%;">
   <header class="col s12">
+    {% block header %}
 
     <!-- End Side-nav -->
 
@@ -82,9 +83,9 @@
         </ul>
       </div>
     </nav>
-  </header>
   <!-- End Header and Tabs -->
   {% endblock %}
+</header>
 
   {% block sidenav%}
   <ul id="slide-out" class="collapsible side-nav fixed wide_400">
@@ -102,7 +103,6 @@
 </ul>
 {%endblock%}
 
-  <body {% block body_id %}id="body"{% endblock %} class="main_body">
 
 
       <!-- Login modal structure -->
@@ -119,17 +119,7 @@
 
 
       <!-- Modal structure used for several modal's in code -->
-      {% block page_modal %}
-        <div id="page_modal" class="modal all_modal">
-          <a class="right modal-action modal-close cancel-div waves-effect waves-light">
-            <i class="red-text small material-icons">clear</i>
-          </a>
-          <div class="modal-content" id="page_modal_content">
-              <h4>Modal Header</h4>
-              <p>A bunch of text</p>
-          </div>
-        </div>
-      {% endblock %}
+
 
       {% block stretch_modal %}
         <div id="stretch_modal" class="modal">
@@ -161,20 +151,26 @@
 
       <!-- Content found in other apps -->
       {% block content %}
+      <div id="wrapper" class="box-parent container expand-on-small-only content-body">
+        <div class="row">
+          <div class="col s4"></div>
+          <div class="col s8 card transparent-box">
+            <div class="card-content">
+              <div class="center card-title black-text">
+                <h1>Guaranteed faster memorization of lyrics</h1>
+              </div>
+              <div class="card-body">
+
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
       {% endblock %}
       </main>
 
       {% block footer %}
-      <footer class="footer center">
-        <p>
-          <a class="footer_link" href="https://www.linkedin.com/in/alexandra-wilson-305134133/">Alex Wilson Linked In </a>
-          <a class="footer_link" href="https://www.facebook.com/alex.powley.3">Alex Wilson Facebook</a>
-          <a class="footer_link" href="http://lds.org/">The Church of Jesus Christ of Latter-day Saints</a>
-        </p>
-        <p>
-          <a class="footer_link" href="http://home.byu.edu/home/copyright">Copyright© 2017, All Rights Reserved</a>
-        </p>
-      </footer>
+
       {% endblock %}
 
   </body>

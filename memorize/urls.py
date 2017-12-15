@@ -13,5 +13,8 @@ urlpatterns = [
     url(r'^ajax-edit-song/$', views.ajax_edit_song, name='ajaxEditSong'),
     url(r'^add-card/$', views.add_card, name='addCard'),
     url(r'^get-cards/$', views.get_cards, name='getCards'),
+    url(r'^delete-song/$', views.delete_song, name='deleteSong'),
+    url(r'^delete-card/$', views.delete_card, name='deleteCard'),
+    url(r'^logout-view/$', views.logout_view, name='logout')
 
 ]

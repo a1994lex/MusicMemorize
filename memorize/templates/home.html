@@ -27,8 +27,7 @@
      <link rel="stylesheet" href="{% static 'material/css/forms.css' %}"/>
      <!--<link rel="stylesheet" href="{% static 'material/css/jquery.datetimepicker.css' %}"/>-->
      <link rel="stylesheet" href="{% static 'material/css/materialize.css' %}"/>
-     <link rel="stylesheet" href="{% static 'css/byustyle.css' %}"/>
-     <link rel="stylesheet" href="{% static 'css/purchasing.css' %}"/>
+     <link rel="stylesheet" href="{% static 'css/alex.css' %}"/>
      <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
      <link rel="stylesheet" href="{% static 'css/header.css' %}"/>
      <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
@@ -70,9 +69,6 @@
        <div class="nav-wrapper">
          <a href="/" class="brand-logo"><img style="padding-right: .5em; padding-left:.5em"src="{% static 'img/white-notes.gif' %}">Memorize</a>
          <ul class="right">
-           <li>
-             <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
-           </li>
            <li><a class="header-btn right tooltipped" style="margin-right: .5em;" data-tooltip="Homepage" href="/"><i class="header-btn material-icons">home</i></a></li>
            <li>
 
@@ -88,27 +84,6 @@
      <!-- End Header and Tabs -->
      {% endblock %}
 
-  <ul id="slide-out" class="side-nav">
-    <li>
-      <div class="my_logo">
-        <img class="my_img" src="{% static 'img/choir.png'%}">
-      </div>
-    </li>
-    <!-- <li><a href="https://www.facebook.com/sharer/sharer.php?u="
-      title="Share on Facebook" target="_blank" class="mdl-button mdl-js-button
-      mdl-button--raised mdl-js-ripple-effect mdl-button--facebook">
-      <i class="fa fa-facebook fa-fw"></i> Facebook</a></li> -->
-    <li><a href="http://byuchoirs.com/">A project for the BYU Choirs</a></li>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">  <h5 id="why_mem">Why Memorize?</h5>
-      <p class="explain_why">
-        When a choir memorizes their music, they are able to focus on their
-        director 100%. They are able to give EVERYTHING to the sound they create.
-      </p>
-    </li>
-    <li><div class="divider"></div></li>
-    <li><a href="#secondary_modal">My group user</a>
-  </ul>
 
 </header>
 <main>
@@ -140,14 +115,13 @@
             {% else %}
             <h3>It appears you do not have a group user yet</h3>
             {% endif %}
-
-
           </div>
         </div>
       {% endblock %}
 
       <!-- Content found in other apps -->
       {% block content %}
+
       {% endblock %}
   </main>
 

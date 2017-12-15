@@ -41,6 +41,10 @@ $(document).ready(function(){
   $('#flashcards').on('click', function(event){
       $('#page_modal').modal('open');
   });
+
+  $('#flashcards_admin').on('click', function(event){
+      $('#page_modal_admin').modal('open');
+  });
   $("#flashcard").flip({
     axis: 'x',
     trigger: 'click',

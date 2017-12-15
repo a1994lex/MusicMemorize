@@ -1,12 +1,30 @@
 {% load static %}
 {% load material_form%}
+{% block extra_js%}
+<script src="{% static 'js/home/flashcard.js' %}"></script>
+{% endblock %}
 
-
+<span id="ctotal" hidden >{{ flashcards|length }}</span>
+<table class="striped">
+  <thead>
+    <tr><th>Front</th><th>Back</th></tr>
+  <tbody>
 {% for card in flashcards %}
-<div id= {{ card.id }} class="cardnum">
-  <span class="cardid">{{ card.id }}</span>
-  <span class="cardtitle">{{ card.title }}</span>
-  <span class="cardfront">{{ card.front }}</span>
-  <span class="cardback">{{ card.back }}</span>
-</div>
+  <tr id= {{ card.id }} class="col fc-rows">
+      <td>
+        <span class="cardfront" >{{ card.front|truncatewords:6 }}</span>
+      </td>
+      <td>
+        <span class="cardback" >{{ card.back|truncatewords:6 }}</span>
+        <a data-tooltip="Delete" class="waves-effect btn-floating red right deleteCard">
+          <i class="material-icons white-text">delete</i>
+        </a>
+        <a data-tooltip="Edit" class="editCard waves-effect btn-floating grey right margin-right ">
+          <i class="material-icons">edit</i>
+        </a>
+      </td>
+
+  </tr>
 {% endfor %}
+</tbody>
+</table>

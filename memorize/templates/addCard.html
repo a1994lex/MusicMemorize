@@ -4,6 +4,9 @@
   <script src="{% static 'js/home/flashcard.js' %}"></script>
 {% endblock%}
 <div id="addCardDiv" style="heigth:100%; width:100%;">
+  {% if edit %}
+  <h4 id="edit"></h4>
+  {% endif %}
 <div class="front flashcard-text grey lighten-3">
 <form id="addCardForm" style="heigth:100%; width:100%;"method="POST">
   {% csrf_token %}

@@ -84,7 +84,7 @@
                       <i class="material-icons right">style</i> Flashcards</a>
                   </li>
                   <li>
-                    <a id="deleteSong" class="red btn waves-effect waves-light" href= "{url 'deleteSong' song.pk}">
+                    <a id="deleteSong" class="red btn waves-effect waves-light" href= "{% url 'deleteSong' %}">
                       <i class="material-icons right">delete</i> delete song</a>
                   </li>
                   <li><div class="divider"></div></li>
@@ -120,47 +120,42 @@
 </div>
 
 
-<div id="page_modal" class="modal all_modal">
+<div id="page_modal" class="modal modal-fixed-footer">
   <a class="right modal-action modal-close waves-effect waves-light">
   </a>
-  <div id="all_cards">
-    {% for card in flashcards %}
-    <div id= {{ card.id }} class="cardnum">
-      <span class="cardid">{{ card.id }}</span>
-      <span class="cardtitle">{{ card.title }}</span>
-      <span class="cardfront">{{ card.front }}</span>
-      <span class="cardback">{{ card.back }}</span>
-    </div>
-    {% endfor %}
-  </div>
   <div class="modal-content" id="page_modal_content">
-    <div id="flashcard">
-      <div class="front flashcard-text center grey lighten-3">
-        <h4></h4>
-        {% if user.is_staff %}
-        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-          <a id="editCard" data-tooltip="Edit" class="waves-effect btn-floating red btn-large ">
-            <i class="material-icons">edit</i>
-          </a>
-        </div>
-        {% endif %}
-      </div>
-      <div class="back flashcard-text center grey">
-        <h4></h4>
-      </div>
+    <div id="all_cards">
+      <span id="ctotal" hidden >{{ flashcards|length }}</span>
+      <table class="striped">
+        <thead>
+          <tr><th>Front</th><th>Back</th></tr>
+        <tbody>
+      {% for card in flashcards %}
+        <tr id= {{ card.id }} class="col fc-rows">
+            <td>
+              <span class="cardfront" >{{ card.front|truncatewords:6 }}</span>
+            </td>
+            <td>
+              <span class="cardback" >{{ card.back|truncatewords:6 }}</span>
+              <a data-tooltip="Delete" class="waves-effect btn-floating red right deleteCard ">
+                <i class="material-icons white-text">delete</i>
+              </a>
+              <a data-tooltip="Edit" class="editCard waves-effect btn-floating grey right margin-right ">
+                <i class="material-icons">edit</i>
+              </a>
+            </td>
+
+        </tr>
+      {% endfor %}
+      </tbody>
+      </table>
     </div>
-  </div>
-  <div class="modal-footer">
-  {% if flashcards %}
-  <a id="nextCard" class="waves-effect btn-flat">Next</a>
-  {% endif %}
-  {% if user.is_staff %}
-  <a id="newCard" class="left waves-effect btn-flat green-text">Create New Card<i class="material-icons right">add</i></a>
-  {% endif %}
-  </div>
-
-
-
+    </div>
+    <div class="modal-footer sticky">
+      {% if user.is_staff %}
+      <a id="newCard" class="center waves-effect btn-flat green-text">Create New Card<i class="material-icons right">add</i></a>
+      {% endif %}
+    </div>
 </div>
 
 {% endblock %}

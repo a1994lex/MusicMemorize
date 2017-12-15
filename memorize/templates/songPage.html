@@ -5,6 +5,8 @@
   <script src="{% static 'js/home/songPage.js' %}"></script>
   <script src="{% static 'js/jquery.countdown.js' %}"></script>
   <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+  <script src="{% static 'js/home/flashcard.js' %}"></script>
+
 {% endblock %}
 {%block content%}
 <link rel="stylesheet" href="{% static 'css/song.css' %}"/>
@@ -46,7 +48,11 @@
           <ul>
             <li class="margin-top">
               <span>
+                {% if user.is_staff %}
+                <a id="flashcards_admin" class="btn-floating margin-right btn-small waves-effect waves-light"><i class="material-icons">open_in_new</i></a>
+                {% else %}
                 <a id="flashcards" class="btn-floating margin-right btn-small waves-effect waves-light"><i class="material-icons">open_in_new</i></a>
+                {% endif %}
                 Flashcards
               </span>
             </li>
@@ -69,7 +75,7 @@
                 </div>
 
             </li>
-            <li class="margin-top">Hide random words
+            <!-- <li class="margin-top">Hide random words
               <div class="switch" id="hide-words">
                 <label>
                   Off
@@ -78,7 +84,7 @@
                   On
                 </label>
                 </div>
-            </li>
+            </li> -->
             <li><div class="divider"></div></li>
 
             <li>
@@ -153,25 +159,73 @@
 </div>
 
 <div id="page_modal" class="modal all_modal">
-  <a class="right modal-action modal-close waves-effect waves-light">
-  </a>
+  <div id="all_cards" hidden>
+    <span id="ctotal" >{{ flashcards|length }}</span>
+    {% for card in flashcards %}
+    <div id= {{ card.id }} class="cardnum">
+      <span class="cardid" hidden>{{ card.id }}</span>
+      <span class="cardfront" >{{ card.front }}</span>
+      <span class="cardback" >{{ card.back }}</span>
+    </div>
+    {% endfor %}
+  </div>
   <div class="modal-content" id="page_modal_content">
-    <div id="flashcard" class="center">
+    <span id="fc-id" hidden></span>
+    <div id="flashcard">
       <div class="front flashcard-text center grey lighten-3">
-        <h4>Just hear those sleigh bells</h4>
+        <h4 id="fc-front"></h4>
       </div>
       <div class="back flashcard-text center grey">
-        <h4>Dingling</h4>
+        <h4 id="fc-back"></h4>
       </div>
     </div>
+    {% if flashcards %}
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a id="nextCard" class="waves-effect btn-floating btn-large">Next</a>
+    </div>
+    {% endif %}
   </div>
-  {% if user.is_staff %}
-  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a id="addCard" class="btn-floating btn-large green">
-      <i class="material-icons">add</i>
-    </a>
-  </div>
-  {% endif %}
+
+
+</div>
+
+<div id="page_modal_admin" class="modal modal-fixed-footer">
+  <a class="right modal-action modal-close waves-effect waves-light">
+  </a>
+  <div class="modal-content" id="page_modal_content_admin">
+    <div id="all_cards">
+      <span id="ctotal" hidden >{{ flashcards|length }}</span>
+      <table class="striped">
+        <thead>
+          <tr><th>Front</th><th>Back</th></tr>
+        <tbody>
+      {% for card in flashcards %}
+        <tr id= {{ card.id }} class="col fc-rows">
+            <td>
+              <span class="cardfront" >{{ card.front|truncatewords:6 }}</span>
+            </td>
+            <td>
+              <span class="cardback" >{{ card.back|truncatewords:6 }}</span>
+              <a data-tooltip="Delete" class="waves-effect btn-floating red right deleteCard ">
+                <i class="material-icons white-text">delete</i>
+              </a>
+              <a data-tooltip="Edit" class="editCard waves-effect btn-floating grey right margin-right ">
+                <i class="material-icons">edit</i>
+              </a>
+            </td>
+
+        </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+    </div>
+    </div>
+    <div class="modal-footer sticky">
+      {% if user.is_staff %}
+      <a id="newCard" class="center waves-effect btn-flat green-text">Create New Card<i class="material-icons right">add</i></a>
+      <a id="userView" href="#page_modal" class="waves-effect btn-flat"> Go to student view</a>
+      {% endif %}
+    </div>
 </div>
 
 {% endblock %}

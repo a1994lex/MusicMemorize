@@ -5,6 +5,17 @@ body {
   background: url("../img/notes.png");
   background-size: cover;
 }
+.box-parent {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.transparent-box {
+  opacity: 0.35 !important;
+}
 .action_buttons .btn {
   margin-right: .25rem;
   padding: 0px 1rem;

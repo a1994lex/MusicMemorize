@@ -14,25 +14,23 @@
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               <p class="card-title">Welcome!</p>
-              <p>Sometimes memorizing the lyrics to songs can be daunting. This
-              is why we have created Memorize for singers to visually practice reciting
+              <p> Here singers can visually practice reciting
               lyrics to songs.</p>
             </div>
             <div class="card-action">
               <a href="#modal1">tips</a>
+              <a href="#modal2">why memorize?</a>
+              <a href="http://byuchoirs.com/">BYU choirs</a>
             </div>
           </div>
         </div>
-        {% if choir.group_user == None %}
 
           <div class="col s12 m6">
             <div class="card white darken-1">
               <div class="card-content dark-text">
                 <div class="card-body">
-                  <p>A group user is important when you would like others
-                  to view and memorize your songs. Simply give them the group
-                username and password for a login, and they will be able to
-                view the songs and practice them</p>
+                  <p>The choir shares a group user account to view and learn songs</p>
+                {% if choir.group_user == None %}
                   <form id="addUserForm" method="POST" class="">
                     <p>
                     {% csrf_token %}
@@ -41,12 +39,15 @@
                     </p>
                   <button id="addGroup" class="btn waves-effect waves-light">Add a Group User</button>
                 </form>
+                {% else %}
+                <h5>Username: {{choir.group_user.username }}</h5>
+                <h5>Password: {{choir.password }}</h5>
+                {% endif %}
                 </div>
               </div>
             </div>
           </div>
 
-        {% endif %}
     </div>
       <div class="col s12 m12" >
         <div class="card white darken-1">
@@ -99,6 +100,25 @@
         <li>
           <div class="collapsible-header"><i class="material-icons">music_note</i>Make it fun</div>
           <div class="collapsible-body"><p>Introducing elements of play and/or competition can make the process of memorization more engaging. Time yourself reciting the lyrics to the song you are trying to memorize, and then use that time to set yourself a challenge; try to see how quickly you can recite the whole thing from memory. Draw a visual representation of a line you are struggling with, or a comic using the lyrics as dialogue. Challenge a friend to see which of you can deliver the most dramatic rendition of the song. Anything that helps you enjoy the process of memorization will be a big help.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="modal2" class="modal white">
+    <div class="modal-content" id="modal_content">
+      <ul>
+        <li class="subheader">  <h5 id="why_mem">Why Memorize?</h5></li>
+        <li>
+          <p class="explain_why">
+            When a choir memorizes their music, they are able to focus on their
+            director 100%. They are able to give EVERYTHING to the sound they create.
+          </p>
+        </li>
+        <li>
+          <div class="margin-top center">
+            <img class="my_img" src="{% static 'img/choir.png'%}">
+          </div>
         </li>
       </ul>
     </div>
