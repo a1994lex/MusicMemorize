@@ -1,6 +1,6 @@
 $(document).ready(function(){
   console.log("loaded flashcards");
-  $cards = $('#all_cards').children();
+  $cards = $('#hidden_cards').children();
   // if ($cards.length == 0) {
   //   console.log("EMPTY LIST");
   //   $('#flashcard').html('<h1 class="grey-text text-lighten-2">EMPTY</h1>');
